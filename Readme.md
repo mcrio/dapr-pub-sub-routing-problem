@@ -1,4 +1,4 @@
-##Dapr pub sub testing...
+## Dapr pub sub testing...
 
 
 
@@ -13,7 +13,7 @@ http://localhost:7040/dapr/subscribe
 ```json
 [
     {
-    "topic": "topic1",
+        "topic": "topic1",
         "pubsubName": "pubsub",
         "routes": {
             "default": "default-route",
@@ -73,6 +73,31 @@ endpoints.MapPost("default-route", RouteDefaultHandler).WithMetadata(
         "pubsub", "topic1", true
     )
 );
+```
+
+#### Subscribe endpoint
+
+http://localhost:7040/dapr/subscribe
+
+```json
+[
+    {
+        "topic": "topic1",
+        "pubsubName": "pubsub",
+        "routes": {
+            "default": "default-route",
+            "rules": [
+                {
+                    "match": "event.type == \"event.v1\"",
+                    "path": "matched-route"
+                }
+            ]
+        },
+        "metadata": {
+            "rawPayload": "true"
+        }
+    }
+]
 ```
 
 #### Failure: Publish message with type event.v1 will be routed to Default route

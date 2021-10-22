@@ -39,12 +39,12 @@ namespace WebApplication
 
                 endpoints.MapPost("matched-route", RouteMatchedHandler).WithMetadata(
                     new TopicAttribute(
-                        "pubsub", "topic1", true,  "event.type == \"event.v1\"", 1
+                        "pubsub", "topic1",  "event.type == \"event.v1\"", 1
                     )
                 );
                 endpoints.MapPost("default-route", RouteDefaultHandler).WithMetadata(
                     new TopicAttribute(
-                        "pubsub", "topic1", true
+                        "pubsub", "topic1"
                     )
                 );
             });
